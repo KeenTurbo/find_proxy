@@ -70,7 +70,7 @@ if [ -n "$BEST_PROXY" ]; then
   
   echo "✍️ 正在更新容器 $CONTAINER_NAME 内的配置文件..."
   # 使用 # 作为 sed 的分隔符，避免与URL中的 / 冲突
-  docker compose exec "$CONTAINER_NAME" sed -i "s#proxy_url = \".*\"#proxy_url = \"http://$BEST_PROXY\"#" /app/data/setting.toml
+  docker  exec "$CONTAINER_NAME" sed -i "s#proxy_url = \".*\"#proxy_url = \"socks5h://$BEST_PROXY\"#" /app/data/setting.toml
   
   echo "🔄 重启grok2api服务以应用新配置..."
   docker compose restart
